@@ -26,7 +26,7 @@ import { getDayOfWeek } from "@/util/util";
     </div>
   </div>
 
-  <div v-else>No weather data available.</div>
+  <div v-else class="empty_state">No weather data available.</div>
 </template>
 
 <script lang="ts">

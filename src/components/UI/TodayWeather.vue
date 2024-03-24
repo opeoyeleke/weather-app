@@ -83,6 +83,8 @@ const weatherData = computed<WeatherData | null>(
       </div>
     </div>
   </div>
+
+  <div v-else class="empty_state">Fetching data...</div>
 </template>
 
 <style>
@@ -199,5 +201,12 @@ const weatherData = computed<WeatherData | null>(
 .today-weather__body__bottom__details p:first-child {
   font-size: 13px;
   color: #898989;
+}
+
+.empty_state {
+  text-align: center;
+  margin-top: 52px;
+  font-size: 16px;
+  color: #666;
 }
 </style>

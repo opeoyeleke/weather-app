@@ -13,6 +13,10 @@ import type { WeatherData } from "@/types/weather";
       <BasicWeatherCard :weather="weather" />
     </div>
   </div>
+
+  <div v-if="weatherList?.length === 0" class="empty_state">
+    Fetching weather data...
+  </div>
 </template>
 
 <script lang="ts">
