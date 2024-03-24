@@ -20,7 +20,7 @@ export interface WeatherData {
     all: number;
   };
   dt: number;
-  dt_txt: string;
+  dt_txt?: string;
   sys: {
     type: number;
     id: number;
