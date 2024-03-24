@@ -1,4 +1,5 @@
 export enum ActionTypes {
-  UPDATE_LOCATION = "updateLocation",
-  UPDATE_WEATHER = "updateWeather",
+  SET_LOCATION = "setLocation",
+  SET_WEATHER = "setWeather",
+  SET_NEXT_FIVE_DAYS_WEATHER = "setNextFiveDaysWeather",
 }

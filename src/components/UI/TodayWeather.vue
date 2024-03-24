@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useStore } from "@/store";
-import type { WeatherR } from "@/types/weather";
+import type { WeatherData } from "@/types/weather";
 import { formatUnixTime } from "@/util/util";
 
 const store = useStore();
-const weatherData = computed<WeatherR | null>(() => store.state.currentWeather);
+const weatherData = computed<WeatherData | null>(
+  () => store.state.currentWeather
+);
 </script>
 
 <template>
@@ -88,8 +90,8 @@ const weatherData = computed<WeatherR | null>(() => store.state.currentWeather);
   max-width: 700px;
   margin: 24px auto 0;
   background-color: #f8f8f8;
+  border: 1px solid #ececec;
   border-radius: 8px;
-  margin-top: 24px;
   overflow: hidden;
 
   @media screen and (max-width: 600px) {
@@ -139,7 +141,7 @@ const weatherData = computed<WeatherR | null>(() => store.state.currentWeather);
   width: 100px;
   background: white;
   border-radius: 50%;
-  border: 2px solid #9c9c9c;
+  border: 2px solid #bdbdbd;
 
   @media screen and (max-width: 600px) {
     width: 60px;

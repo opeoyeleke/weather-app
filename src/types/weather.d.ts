@@ -1,8 +1,5 @@
-export interface WeatherR {
-  coord: {
-    lon: number;
-    lat: number;
-  };
+export interface WeatherData {
+  coord: Coord;
   weather: Weather[];
   base: string;
   main: {
@@ -23,6 +20,7 @@ export interface WeatherR {
     all: number;
   };
   dt: number;
+  dt_txt: string;
   sys: {
     type: number;
     id: number;
@@ -42,4 +40,25 @@ export interface Weather {
   main: string;
   description: string;
   icon: string;
+}
+
+export interface Coord {
+  lon: number;
+  lat: number;
+}
+
+export interface WeatherForecastData {
+  cnt: number;
+  cod: string;
+  list: WeatherData[];
+  city: {
+    id: number;
+    name: string;
+    coord: Coord;
+    country: string;
+    population: number;
+    timezone: number;
+    sunrise: number;
+    sunset: number;
+  };
 }

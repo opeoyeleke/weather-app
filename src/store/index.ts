@@ -2,11 +2,12 @@ import { createStore, Store, useStore as baseUseStore } from "vuex";
 import type { InjectionKey } from "vue";
 import { mutations } from "./mutations";
 import type { CurrentLocation } from "@/types/location";
-import type { WeatherR } from "@/types/weather";
+import type { WeatherData } from "@/types/weather";
 
 export interface State {
   currentLocation: CurrentLocation;
-  currentWeather: WeatherR | null;
+  currentWeather: WeatherData | null;
+  nextFiveDaysWeather: WeatherData[];
 }
 
 export const key: InjectionKey<Store<State>> = Symbol();
@@ -21,6 +22,7 @@ export const store = createStore<State>({
       longitude: 0,
     },
     currentWeather: null,
+    nextFiveDaysWeather: [],
   },
   mutations,
 });

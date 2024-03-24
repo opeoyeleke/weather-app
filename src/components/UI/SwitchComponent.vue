@@ -21,7 +21,7 @@ export default {
       activeTab: this.value,
       days: [
         { name: "Today", value: "today" },
-        { name: "Next 7 Days", value: "next7days" },
+        { name: "Next 5 Days", value: "next5days" },
         { name: "Last 5 Days", value: "last5days" },
       ],
     };
