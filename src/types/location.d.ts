@@ -56,4 +56,6 @@ export type CurrentLocation = {
   city: string;
   region: string;
   country: string;
+  latitude: number;
+  longitude: number;
 };

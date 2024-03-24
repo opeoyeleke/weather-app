@@ -53,15 +53,16 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 16px;
   background-color: #f8f8f8;
+  border-bottom: 1px solid #ececec;
 }
 
 .header_location {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
 .header_search {
@@ -71,14 +72,14 @@ export default {
 }
 
 input {
-  width: calc(100% - 1rem);
-  padding: 0.5rem 1rem;
+  width: calc(100% - 16px);
+  padding: 8px 16px;
   border: 1px solid #ccc;
   border-radius: 4px 0 0 4px;
 }
 
 button {
-  padding: 0.5rem 1rem;
+  padding: 8px 16px;
   background-color: rgb(86, 149, 172);
   color: white;
   border: none;
@@ -92,4 +93,3 @@ input:focus-visible {
   border-color: rgb(86, 149, 172);
 }
 </style>
-../../types/location
