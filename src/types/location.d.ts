@@ -52,7 +52,7 @@ export interface Connection {
   isp_name: string;
 }
 
-export type LocationState = {
+export type CurrentLocation = {
   city: string;
   region: string;
   country: string;

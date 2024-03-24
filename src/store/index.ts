@@ -1,10 +1,10 @@
 import { createStore, Store, useStore as baseUseStore } from "vuex";
 import type { InjectionKey } from "vue";
 import { mutations } from "./mutations";
-import type { LocationState } from "@/types/location";
+import type { CurrentLocation } from "@/types/location";
 
 export interface State {
-  currentLocation: LocationState;
+  currentLocation: CurrentLocation;
 }
 
 export const key: InjectionKey<Store<State>> = Symbol();

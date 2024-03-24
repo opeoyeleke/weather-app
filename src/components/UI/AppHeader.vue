@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import LocationIcon from "../icons/LocationIcon.vue";
-import type { LocationState } from "../../types/location";
+import type { CurrentLocation } from "../../types/location";
 import { useStore } from "@/store";
 
 const store = useStore();
-const location = computed<LocationState>(() => store.state.currentLocation);
+const location = computed<CurrentLocation>(() => store.state.currentLocation);
 </script>
 
 <template>
