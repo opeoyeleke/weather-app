@@ -27,7 +27,7 @@ export default {
     };
   },
   methods: {
-    switchTo(tab) {
+    switchTo(tab: string) {
       if (tab !== this.activeTab) {
         this.activeTab = tab;
         this.$emit("update:value", tab);

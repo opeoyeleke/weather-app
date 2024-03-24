@@ -1,4 +1,4 @@
-import axios, { type AxiosResponse } from "axios";
+import axios, { AxiosError, type AxiosResponse } from "axios";
 import type { WeatherData, WeatherForecastData } from "@/types/weather";
 
 const baseURL = "https://api.openweathermap.org/data/2.5";
@@ -16,7 +16,7 @@ export const getCurrentWeatherData = async (
       .then((response: AxiosResponse<WeatherData>) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });
@@ -34,7 +34,7 @@ export const getForecastWeatherData = async (
       .then((response: AxiosResponse<WeatherForecastData>) => {
         resolve(response.data);
       })
-      .catch((error) => {
+      .catch((error: AxiosError) => {
         reject(error);
       });
   });

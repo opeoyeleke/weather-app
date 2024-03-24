@@ -84,6 +84,19 @@ onMounted(() => {
       v-else-if="selectedValue === 'next5days'"
       :weatherList="nextFiveDaysWeather"
     />
+    <div v-else-if="selectedValue === 'last5days'">
+      <div class="empty_state">
+        This could not be achieved because getting historical weather data is
+        now a paid feature in OpenWeatherMap API.
+        <a
+          href="https://openweathermap.org/price"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Reference</a
+        >
+      </div>
+    </div>
   </div>
 </template>
 

@@ -3,17 +3,22 @@ import { computed } from "vue";
 import { useStore } from "@/store";
 import type { WeatherData } from "@/types/weather";
 import { formatUnixTime } from "@/util/util";
+import type { CurrentLocation } from "@/types/location";
 
 const store = useStore();
 const weatherData = computed<WeatherData | null>(
   () => store.state.currentWeather
 );
+const location = computed<CurrentLocation>(() => store.state.currentLocation);
 </script>
 
 <template>
   <div v-if="weatherData" class="today-weather">
     <div class="today-weather__header">
-      <h2>Today in {{ weatherData.name }}, {{ weatherData.sys.country }}</h2>
+      <h2>
+        Today in {{ location.city }}{{ location.city && "," }}
+        {{ location.country }}
+      </h2>
 
       <p>{{ new Date(weatherData.dt * 1000).toDateString() }}</p>
     </div>
@@ -105,6 +110,7 @@ const weatherData = computed<WeatherData | null>(
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   background: #e0eaf1;
   padding: 8px 16px;
 }
@@ -205,8 +211,10 @@ const weatherData = computed<WeatherData | null>(
 
 .empty_state {
   text-align: center;
-  margin-top: 52px;
+  margin: 52px auto 0;
   font-size: 16px;
+  line-height: 150%;
   color: #666;
+  max-width: 500px;
 }
 </style>
