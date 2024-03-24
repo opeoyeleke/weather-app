@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch } from "vue";
 import { useStore } from "@/store";
+import { debounce } from "lodash";
 import { getGeodataWithSearch } from "@/services/location";
 import { ActionTypes } from "@/store/actions";
 import type { CurrentLocation, GeoapifyLocation } from "../../types/location";
@@ -13,9 +14,8 @@ const searchInput = ref("");
 const searchResults = ref<GeoapifyLocation[]>([]);
 const loading = ref(false);
 
-const searchLocation = async () => {
+const searchLocation = debounce(async () => {
   loading.value = true;
-
   try {
     const res: GeoapifyLocation[] = await getGeodataWithSearch(
       searchInput.value
@@ -26,13 +26,11 @@ const searchLocation = async () => {
   } finally {
     loading.value = false;
   }
-};
+}, 600);
 
 const selectLocation = (location: GeoapifyLocation) => {
   searchInput.value = "";
   searchResults.value = [];
-
-  console.log(location);
 
   const payload: CurrentLocation = {
     city: location.city || location.state,
@@ -45,8 +43,10 @@ const selectLocation = (location: GeoapifyLocation) => {
 };
 
 watch(searchInput, () => {
-  if (searchResults.value.length > 0) {
+  if (searchInput.value.trim() === "") {
     searchResults.value = [];
+  } else {
+    searchLocation();
   }
 });
 </script>
@@ -68,10 +68,9 @@ watch(searchInput, () => {
         placeholder="Search city"
         v-model="searchInput"
         @keyup.enter="searchLocation"
-        :disabled="loading"
       />
 
-      <button @click="searchLocation" :disabled="loading">
+      <button @click="searchLocation">
         {{ loading ? "Loading" : "Search" }}
       </button>
 
