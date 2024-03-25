@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useStore } from "@/store";
 import type { WeatherData } from "@/types/weather";
 import { formatUnixTime } from "@/util/util";
@@ -10,6 +10,11 @@ const weatherData = computed<WeatherData | null>(
   () => store.state.currentWeather
 );
 const location = computed<CurrentLocation>(() => store.state.currentLocation);
+const showExtra = ref(false);
+
+const toggleShowExtra = () => {
+  showExtra.value = !showExtra.value;
+};
 </script>
 
 <template>
@@ -53,7 +58,9 @@ const location = computed<CurrentLocation>(() => store.state.currentLocation);
             <p>Min Temp:</p>
             <p>{{ weatherData.main.temp_min }}°C</p>
           </div>
+        </div>
 
+        <div v-if="showExtra" class="today-weather__body__bottom__details">
           <div>
             <p>Sunrise:</p>
             <p>
@@ -67,9 +74,7 @@ const location = computed<CurrentLocation>(() => store.state.currentLocation);
               {{ formatUnixTime(weatherData.sys.sunset) }}
             </p>
           </div>
-        </div>
 
-        <div class="today-weather__body__bottom__details">
           <div>
             <p>Humidity:</p>
             <p>{{ weatherData.main.humidity }}%</p>
@@ -85,6 +90,12 @@ const location = computed<CurrentLocation>(() => store.state.currentLocation);
             <p>{{ weatherData.main.pressure }} hPa</p>
           </div>
         </div>
+      </div>
+
+      <div class="today-weather__action__toggle">
+        <button @click="toggleShowExtra">
+          {{ showExtra ? "Hide" : "Show" }} extra
+        </button>
       </div>
     </div>
   </div>
@@ -207,6 +218,17 @@ const location = computed<CurrentLocation>(() => store.state.currentLocation);
 .today-weather__body__bottom__details p:first-child {
   font-size: 13px;
   color: #898989;
+}
+
+.today-weather__action__toggle {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.today-weather__action__toggle button {
+  cursor: pointer;
 }
 
 .empty_state {
